@@ -1,0 +1,82 @@
+{
+  "name": "script-editor",
+  "version": "1.0.0",
+  "description": "Trình soạn kịch bản chuyên nghiệp với tính năng ghi âm",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win --x64",
+    "build-win32": "electron-builder --win --ia32",
+    "build-all": "electron-builder --win --x64 --ia32",
+    "pack": "electron-packager . ScriptEditor --platform=win32 --arch=x64 --out=dist --overwrite --icon=icon.ico",
+    "dist": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "com.scripteditor.app",
+    "productName": "Script Editor",
+    "copyright": "Copyright © 2025",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icon.ico",
+      "artifactName": "${productName}-${version}-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "installerHeaderIcon": "icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Script Editor",
+      "license": "LICENSE.txt"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-Portable.${ext}"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "!dist/**/*",
+      "!.git/**/*",
+      "!*.md"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    }
+  },
+  "keywords": [
+    "script",
+    "editor",
+    "screenplay",
+    "audio",
+    "recording",
+    "electron"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.9.1",
+    "electron-packager": "^17.1.2"
+  }
+}
